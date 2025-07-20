@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { getUserData, loggedUserName, logOut, sessionStatus } from '@/app/login/LoginSlice';
+import { clearState, getUserData, loggedUserName, logOut, sessionStatus } from '@/app/login/LoginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { PostApi } from '@/lib/ApiCall';
@@ -42,6 +42,7 @@ const Header = () => {
     useEffect(() => {
         if (session === 'loggedOut') {
             logOutApi();
+            dispatch(clearState());
             if (userClicked) {
                 setPopup({ show: true, image: 'successAnimation', message: 'Logged Out Successfully!' });
                 setUserClicked(false);

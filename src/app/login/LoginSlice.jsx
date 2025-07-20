@@ -31,6 +31,15 @@ export const userSlice = createSlice({
             state.home = '',
             state.favs = [],
             state.session = 'loggedOut'
+        },
+        clearState: (state, action) => {
+            state.userId = '',
+            state.userName = '',
+            state.userMail = '',
+            state.userJoinedOn = '',
+            state.home = '',
+            state.favs = [],
+            state.session = ''
         }
     },
     extraReducers: (builder) => {
@@ -55,6 +64,6 @@ export const loggedUserHome = state => state.user.home
 export const loggedUserFavs = state => state.user.favs
 export const sessionStatus = state => state.user.session
 
-export const { logOut } = userSlice.actions
+export const { logOut, clearState } = userSlice.actions
 
 export default userSlice.reducer
