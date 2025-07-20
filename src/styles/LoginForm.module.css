@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+
+.switchLogin {
+    font-family: 'Roboto';
+}
+
+.logoImg {
+    border-radius: 200px;
+    width: 80px;
+    margin-top: 1rem;
+}
+
+.fieldContainer {
+    text-align: left;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.label {
+    display: block;
+    font-size: .9rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: .2rem;
+}
+
+.textBox {
+    font-size: 1rem;
+    font-family: 'Roboto';
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+.forgotPassword {
+    font-size: .9rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.loginBtn {
+    font-family: 'Roboto';
+    color: #FFFFFF;
+    background: #0957DE;
+    width: 100%;
+}
+
+.line {
+    color: lightgray;
+    border-bottom: 1px solid;
+    width: 30%;
+}
+
+.noLoginBtn {
+    font-family: 'Roboto';
+    color: #0957DE;
+    background: #FFFFFF;
+    width: 100%;
+}
+
+.error {
+    font-size: 12px;
+    font-family: 'Roboto';
+    font-weight: 600;
+    letter-spacing: 0.65px;
+    color: #FB3E3E;
+    text-align: left;
+    width: 100%;
+    margin-top: .20rem;
+}

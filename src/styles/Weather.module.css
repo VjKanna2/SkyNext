@@ -1,0 +1,12 @@
+.gridBox {
+    background: #ffffff69;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0.5rem;
+}
+
+.textBox {
+    font-size: 1rem;
+    font-family: var(--custom-open-sans);
+    background: white;
+    border-radius: 0.5rem;
+}

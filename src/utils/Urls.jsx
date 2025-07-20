@@ -1,0 +1,7 @@
+export const API_URL = '/api/'
+export const LOGIN = 'Login'
+export const SIGNUP = 'SignUp'
+export const LOGOUT = 'Logout'
+export const VERIFYMAIL = 'SignUp/VerifyMail'
+export const LOCATION_SEARCH = 'Weather?location='
+export const REFRESH = '/Refresh'
