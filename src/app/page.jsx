@@ -5,7 +5,8 @@ import { LOCATION_SEARCH } from '@/utils/Urls';
 import { PostApi, GetApi } from '@/lib/ApiCall';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, loggedUserHome, loggedUserId } from '@/app/slices/User';
-import { getUserLocation } from '@/utils/Functions';
+import { getUserLocation, setDynamicBackground } from '@/utils/Functions';
+import Backgrounds from '@/components/Backgrounds';
 import WeatherReport from './WeatherReport';
 import PopUp from '@/components/PopUp';
 import '@/styles/global.css';
@@ -44,30 +45,6 @@ const Home = () => {
             getWeather(home.place);
         } else getWeather('Trichy');
     }
-
-    const setWeatherBg = (weather) => {
-        const videoSrc = {
-            cloud: 'videos/Cloudy.mp4',
-            clear: 'videos/Clear.mp4',
-            drizzle: 'videos/Drizzle.mp4',
-            dust: 'videos/Dust.mp4',
-            fog: 'videos/Dust.mp4',
-            smoke: 'videos/Dust.mp4',
-            smog: 'videos/Dust.mp4',
-            mist: 'videos/Dust.mp4',
-            rain: 'videos/Rainy.mp4',
-            snow: 'videos/Snow.mp4',
-            sunny: 'videos/Sunny.mp4',
-            thunder: 'videos/Thunder.mp4',
-        };
-
-        for (const key in videoSrc) {
-            if (weather.includes(key)) {
-                setSrcVideo(videoSrc[key]);
-                return;
-            }
-        }
-    };
 
     const setWeatherState = (weatherDetails) => {
 
@@ -133,7 +110,7 @@ const Home = () => {
                 const data = await response.data;
                 if (data !== null && data.Status === 'Success') {
                     const weather = (data.Data.weather[0]?.main).toLowerCase();
-                    setWeatherBg(weather);
+                    setSrcVideo(setDynamicBackground(weather));
                     setWeatherState(data?.Data);
                     if (home === '') {
                         setPopup({
@@ -180,7 +157,7 @@ const Home = () => {
             const data = await response.data;
             if (data !== null && data?.Status === 'Success') {
                 const weatherBackground = (data?.Data.weather[0]?.main).toLowerCase();
-                setWeatherBg(weatherBackground);
+                setSrcVideo(setDynamicBackground(weatherBackground));
                 setWeatherState(data?.Data);
             } else if (response.status === 401) {
                 setPopup({ show: true, message: 'Please Login To Continue', image: 'images/LoginToContinue.svg', actions: [] });
@@ -207,17 +184,19 @@ const Home = () => {
 
     return (
         <div className='m-0 p-0'>
-            <Header />
-            <div className="w-full p-4 sm:p-8 sm:pt-4 md:p-12 md:pt-8">
-                <WeatherReport
-                    userId={userId}
-                    location={location}
-                    setLocation={setLocation}
-                    getWeather={getWeather}
-                    userBasedWeather={userBasedWeather}
-                    weatherData={weatherData}
-                />
-            </div>
+            <Backgrounds videoUrl={srcVideo}>
+                <Header />
+                <div className="w-full p-4 sm:p-8 sm:pt-4 md:p-12 md:pt-8">
+                    <WeatherReport
+                        userId={userId}
+                        location={location}
+                        setLocation={setLocation}
+                        getWeather={getWeather}
+                        userBasedWeather={userBasedWeather}
+                        weatherData={weatherData}
+                    />
+                </div>
+            </Backgrounds>
             {isLoading && <Loader />}
             <PopUp
                 show={popup.show}

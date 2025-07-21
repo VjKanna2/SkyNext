@@ -49,8 +49,6 @@ const Header = () => {
             } else {
                 setPopup({ show: true, image: 'images/SessionEnded.png', message: 'Oops! Session Ended. Please Login Again' });
             }
-        } else {
-            setPopup({ show: false, image: '', message: '' });
         }
     }, [session]);
 
@@ -64,6 +62,7 @@ const Header = () => {
 
         if (url === 'logout') {
             try {
+                setUserClicked(true);
                 const result = await dispatch(logOut()).unwrap();
                 if (result?.Message === 'Logged Out Successfully') {
                     route.push('/');
@@ -92,12 +91,7 @@ const Header = () => {
         { label: 'Home', onClick: () => navigateFromMenu('/') },
         ...(isLoggedIn ? [
             { label: 'Profile', onClick: () => navigateFromMenu(`/profile/${userName}`) },
-            {
-                label: 'Log out', onClick: () => {
-                    navigateFromMenu('logout');
-                    setUserClicked(true);
-                }
-            },
+            { label: 'Log out', onClick: () => navigateFromMenu('logout') },
         ] : [
             { label: 'Login', onClick: () => navigateFromMenu('/login') },
         ])

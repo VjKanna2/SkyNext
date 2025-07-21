@@ -1,5 +1,6 @@
 import React from 'react';
 import weatherStyles from '@/styles/Weather.module.css';
+import { camelCase } from '@/utils/Functions';
 
 const WeatherReport = ({ userId, location, setLocation, getWeather, userBasedWeather, weatherData }) => {
 
@@ -69,8 +70,8 @@ const WeatherReport = ({ userId, location, setLocation, getWeather, userBasedWea
                             <div className="currentWeather_condition-weather flex items-center">
                                 <img src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} className='mr-2 w-32' />
                                 <div className='flex flex-col'>
-                                    <p className="font-semibold text-gray-800 text-3xl">{weatherData.weather}</p>
-                                    <p className="text-md text-gray-600">{weatherData.weatherDesc}</p>
+                                    <p className="font-semibold text-gray-800 text-3xl">{camelCase(weatherData.weather)}</p>
+                                    <p className="text-md text-gray-600">{camelCase(weatherData.weatherDesc)}</p>
                                 </div>
                             </div>
                             <div className="currentWeather_condition-temprature text-center">
