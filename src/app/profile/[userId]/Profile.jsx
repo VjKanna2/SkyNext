@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { loggedUserHome, loggedUserJoinedOn, loggedUserMail, loggedUserName } from '@/app/login/LoginSlice'
+import { loggedUserHome, loggedUserJoinedOn, loggedUserMail, loggedUserName } from '@/app/slices/User'
 import { useRouter } from 'next/navigation'
 import profileStyles from '@/styles/Profile.module.css'
 

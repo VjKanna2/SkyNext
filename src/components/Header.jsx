@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { clearState, getUserData, loggedUserName, logOut, sessionStatus } from '@/app/login/LoginSlice';
+import { clearState, getUserData, loggedUserName, logOut, sessionStatus } from '@/app/slices/User';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { PostApi } from '@/lib/ApiCall';

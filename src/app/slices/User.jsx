@@ -33,12 +33,6 @@ export const userSlice = createSlice({
             state.session = 'loggedOut'
         },
         clearState: (state, action) => {
-            state.userId = '',
-            state.userName = '',
-            state.userMail = '',
-            state.userJoinedOn = '',
-            state.home = '',
-            state.favs = [],
             state.session = ''
         }
     },
