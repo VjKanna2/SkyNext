@@ -16,6 +16,6 @@ export const weatherSlice = createSlice({
 
 export const lastWeatherData = state => state.data;
 
-export const { updateWeather } = weatherSlice.actions
+export const { updateWeather } = weatherSlice.actions;
 
 export default weatherSlice.reducer;
