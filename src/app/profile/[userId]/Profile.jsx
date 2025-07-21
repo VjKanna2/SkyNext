@@ -34,7 +34,7 @@ const Profile = ({ paramsValue }) => {
             </div>
             <div
                 className={`flex flex-col ${profileStyles.gridBox}
-                    col-span-3 row-start-3
+                    col-span-6 row-start-3
                     md:col-start-3 md:col-span-3 md:row-start-auto
                 `}
             >
@@ -43,7 +43,7 @@ const Profile = ({ paramsValue }) => {
             </div>
             <div
                 className={`flex flex-col ${profileStyles.gridBox}
-                    col-start-4 col-span-3 row-start-3
+                    col-span-6 row-start-4 
                     md:col-start-3 md:col-span-3 md:row-start-2
                 `}
             >
@@ -52,7 +52,7 @@ const Profile = ({ paramsValue }) => {
             </div>
             <div
                 className={`flex flex-col ${profileStyles.gridBox}
-                    col-span-6 row-start-4
+                    col-span-6 row-start-5
                     md:col-start-3 md:col-span-3 md:row-start-3 md:row-span-2
                 `}
             >
