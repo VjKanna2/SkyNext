@@ -19,7 +19,7 @@ const PopUp = (props) => {
 
                 <div className="flex justify-center mb-4">
                     {image === 'successAnimation' ?
-                        <Lottie animationData={successAnimation} loop={true} />
+                        <Lottie animationData={successAnimation} loop={true} style={{ width: '100px', height: '100px' }} />
                         :
                         <img src={image} />
                     }

@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import { LOCATION_SEARCH } from '@/utils/Urls';
 import { PostApi, GetApi } from '@/lib/ApiCall';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserData, loggedUserHome, loggedUserId } from '@/app/login/LoginSlice';
+import { getUserData, loggedUserHome, loggedUserId } from '@/app/slices/User';
 import { getUserLocation } from '@/utils/Functions';
 import WeatherReport from './WeatherReport';
 import PopUp from '@/components/PopUp';
@@ -40,7 +40,7 @@ const Home = () => {
         if (userId !== '' && home === '') userBasedWeather();
         else if (userId !== '' && (home !== '' && home?.latitude !== '' && home?.location !== '')) {
             userBasedWeather(home.latitude, home.longitude);
-        } else if (userId !== '' && (home !== '' && home.place !== '' || home.place !== undefined || home.place !== null)) {
+        } else if (userId !== '' && (home !== '' && home.place !== '')) {
             getWeather(home.place);
         } else getWeather('Trichy');
     }
