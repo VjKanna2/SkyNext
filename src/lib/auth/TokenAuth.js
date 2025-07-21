@@ -11,7 +11,7 @@ export const getToken = (user) => {
     return jwt.sign(
         { id: user._id, name: user.name, mailId: user.mailId, joinedOn: user.createdAt },
         SECRET_KEY,
-        { expiresIn: '1m' }
+        { expiresIn: '15m' }
     )
 }
 
@@ -19,7 +19,7 @@ export const refreshToken = (user) => {
     return jwt.sign(
         { id: user._id, mailId: user.mailId },
         REFRESH_KEY,
-        { expiresIn: '2m' }
+        { expiresIn: '1d' }
     )
 }
 
