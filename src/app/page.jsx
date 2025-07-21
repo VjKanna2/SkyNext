@@ -9,8 +9,8 @@ import { getUserLocation, setDynamicBackground } from '@/utils/Functions';
 import Backgrounds from '@/components/Backgrounds';
 import WeatherReport from './WeatherReport';
 import PopUp from '@/components/PopUp';
-import '@/styles/global.css';
 import Loader from '@/components/Loader';
+import '@/styles/global.css';
 
 const Home = () => {
 
