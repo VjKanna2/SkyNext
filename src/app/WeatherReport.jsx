@@ -56,7 +56,7 @@ const WeatherReport = ({ userId, location, setLocation, getWeather, userBasedWea
                 }
             </div>
 
-            {
+            {weatherData &&
                 Object.keys(weatherData).length > 0 &&
                 <div className="p-3 w-full h-full lg:w-2/3">
 
@@ -109,7 +109,7 @@ const WeatherReport = ({ userId, location, setLocation, getWeather, userBasedWea
                 </div>
             }
 
-            {
+            {weatherData &&
                 Object.keys(weatherData).length > 0 &&
                 <div className="p-3 w-full lg:w-1/3 font-[var(--font-roboto)]">
                     <div className={`${weatherStyles.gridBox} p-4`}>
