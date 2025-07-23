@@ -24,6 +24,7 @@ export function getUserLocation() {
 
 // CamelCase
 export function camelCase(value) {
+    if (typeof value !== 'string') return '';
     return value
         .split(' ')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
