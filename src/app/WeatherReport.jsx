@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import weatherStyles from '@/styles/Weather.module.css';
 import { camelCase } from '@/utils/Functions';
@@ -25,6 +26,8 @@ const WeatherReport = ({ userId, location, setLocation, getWeather, userBasedWea
     const celsiusToFahrenheit = (c) => {
         return ((c * 9 / 5) + 32).toFixed(2);
     }
+
+    console.log('Weather Data :', weatherData);
 
     return (
         <div className="glass-effect flex flex-wrap items-stretch justify-between w-full p-0 sm:p-4">

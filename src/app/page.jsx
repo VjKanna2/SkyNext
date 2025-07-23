@@ -112,6 +112,7 @@ const Home = () => {
                     const weather = (data.Data.weather[0]?.main).toLowerCase();
                     setSrcVideo(setDynamicBackground(weather));
                     setWeatherState(data?.Data);
+                    console.log('Test From User based Response Weather :', data?.Data);
                     if (home === '') {
                         setPopup({
                             show: true,
@@ -158,6 +159,7 @@ const Home = () => {
             if (data !== null && data?.Status === 'Success') {
                 const weatherBackground = (data?.Data.weather[0]?.main).toLowerCase();
                 setSrcVideo(setDynamicBackground(weatherBackground));
+                console.log('Test From API Response Weather :', data?.Data);
                 setWeatherState(data?.Data);
             } else if (response.status === 401) {
                 setPopup({ show: true, message: 'Please Login To Continue', image: 'images/LoginToContinue.svg', actions: [] });
