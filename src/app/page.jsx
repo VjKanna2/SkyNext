@@ -5,7 +5,7 @@ import { LOCATION_SEARCH } from '@/utils/Urls';
 import { PostApi, GetApi } from '@/lib/ApiCall';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, loggedUserHome, loggedUserId } from '@/app/slices/User';
-import { getUserLocation, setDynamicBackground } from '@/utils/Functions';
+import { camelCase, getUserLocation, setDynamicBackground } from '@/utils/Functions';
 import Backgrounds from '@/components/Backgrounds';
 import WeatherReport from './WeatherReport';
 import PopUp from '@/components/PopUp';
@@ -133,7 +133,7 @@ const Home = () => {
                         });
                     }
                 } else if (data.Status === 'Not Found') {
-                    setPopup({ show: true, message: data.Message, image: 'images/Alert.svg', actions: [] });
+                    setPopup({ show: true, message: `${camelCase(location)} - ${camelCase(data.Message)}`, image: 'images/Alert.svg', actions: [] });
                 }
             } else if (response.status === 401) {
                 setPopup({ show: true, message: 'Session Ended. Please Login To Continue', image: 'images/SessionEnded.svg', actions: [] });
@@ -164,7 +164,7 @@ const Home = () => {
             } else if (response.status === 401) {
                 setPopup({ show: true, message: 'Please Login To Continue', image: 'images/LoginToContinue.svg', actions: [] });
             } else if (data.Status === 'Not Found') {
-                setPopup({ show: true, message: data.Message, image: 'images/Alert.svg', actions: [] });
+                setPopup({ show: true, message: `${camelCase(location)} - ${camelCase(data.Message)}`, image: 'images/Alert.svg', actions: [] });
             }
         } catch (error) {
             console.error('Error Fetching Weather', error);
