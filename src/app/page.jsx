@@ -48,8 +48,6 @@ const Home = () => {
 
     const setWeatherState = (weatherDetails) => {
 
-        if(weatherDetails === null || weatherDetails === undefined) return;
-
         const lat = weatherDetails.coord?.lat.toFixed(2) + "° " + (weatherDetails.coord?.lat >= 0 ? "N" : "S");
         const lon = weatherDetails.coord?.lon.toFixed(2) + "° " + (weatherDetails.coord?.lon >= 0 ? "E" : "W");
 
@@ -70,7 +68,9 @@ const Home = () => {
             groundLevelPressure: weatherDetails.main.grnd_level,
 
             windSpeed: `${weatherDetails.wind?.speed.toFixed(1)} m/s`,
-            windGusts: `${weatherDetails.wind?.gust.toFixed(1)} m/s`,
+            windGusts: weatherDetails.wind?.gust?.toFixed(1) ?
+                `${weatherDetails.wind.gust.toFixed(1)} m/s`
+                : 'N/A',
             windDirection: weatherDetails.wind?.deg,
 
             sunrise: weatherDetails.sys.sunrise,
