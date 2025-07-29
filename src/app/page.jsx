@@ -108,6 +108,7 @@ const Home = () => {
                 setIsLoading(true);
                 const response = await PostApi('Weather', location)
                 const data = await response.data;
+                console.log('Response From User Based Weather :', data);
                 if (data !== null && data.Status === 'Success') {
                     const weather = (data.Data.weather[0]?.main).toLowerCase();
                     setSrcVideo(setDynamicBackground(weather));
@@ -156,6 +157,7 @@ const Home = () => {
             setIsLoading(true);
             const response = await GetApi(LOCATION_SEARCH + (location ? location : place));
             const data = await response.data;
+            console.log('Response From Weather Search :', data);
             if (data !== null && data?.Status === 'Success') {
                 const weatherBackground = (data?.Data.weather[0]?.main).toLowerCase();
                 setSrcVideo(setDynamicBackground(weatherBackground));

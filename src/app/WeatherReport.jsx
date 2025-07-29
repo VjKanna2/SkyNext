@@ -7,6 +7,10 @@ const WeatherReport = ({ userId, location, setLocation, getWeather, userBasedWea
 
     const [data, setData] = useState(null);
 
+    console.log('Data :', data);
+
+    console.log('Weather Data :', weatherData);
+
     useEffect(() => {
         setData(weatherData);
     }, [weatherData]);
