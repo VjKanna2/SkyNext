@@ -8,7 +8,7 @@ const WeatherReport = ({ userId, location, setLocation, getWeather, userBasedWea
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        if(weatherData) setData(weatherData);
+        setData(weatherData);
     }, [weatherData]);
 
     const unixToIST = (unixTimestamp) => {
@@ -63,8 +63,7 @@ const WeatherReport = ({ userId, location, setLocation, getWeather, userBasedWea
                 }
             </div>
 
-            {data &&
-                // Object.keys(weatherData).length > 0 &&
+            {data !== null &&
                 <div className="p-3 w-full h-full lg:w-2/3">
 
                     <div className={`currentWeather ${weatherStyles.gridBox} p-4`}>
@@ -116,8 +115,7 @@ const WeatherReport = ({ userId, location, setLocation, getWeather, userBasedWea
                 </div>
             }
 
-            {data &&
-                // Object.keys(weatherData).length > 0 &&
+            {data !== null &&
                 <div className="p-3 w-full lg:w-1/3 font-[var(--font-roboto)]">
                     <div className={`${weatherStyles.gridBox} p-4`}>
                         <div className="flex flex-wrap items-center mb-6">
