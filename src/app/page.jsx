@@ -48,6 +48,8 @@ const Home = () => {
 
     const setWeatherState = (weatherDetails) => {
 
+        if(weatherDetails === null || weatherDetails === undefined) return;
+
         const lat = weatherDetails.coord?.lat.toFixed(2) + "° " + (weatherDetails.coord?.lat >= 0 ? "N" : "S");
         const lon = weatherDetails.coord?.lon.toFixed(2) + "° " + (weatherDetails.coord?.lon >= 0 ? "E" : "W");
 
@@ -107,8 +109,10 @@ const Home = () => {
             if (location.latitude !== '' && location.longitude !== '') {
                 setIsLoading(true);
                 const response = await PostApi('Weather', location)
-                const data = await response.data;
+                const data = response.data;
+
                 console.log('Response From User Based Weather :', data);
+
                 if (data !== null && data.Status === 'Success') {
                     const weather = (data.Data.weather[0]?.main).toLowerCase();
                     setSrcVideo(setDynamicBackground(weather));
@@ -156,8 +160,10 @@ const Home = () => {
         try {
             setIsLoading(true);
             const response = await GetApi(LOCATION_SEARCH + (location ? location : place));
-            const data = await response.data;
+            const data = response.data;
+
             console.log('Response From Weather Search :', data);
+
             if (data !== null && data?.Status === 'Success') {
                 const weatherBackground = (data?.Data.weather[0]?.main).toLowerCase();
                 setSrcVideo(setDynamicBackground(weatherBackground));
