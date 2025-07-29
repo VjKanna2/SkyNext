@@ -48,8 +48,8 @@ const Home = () => {
 
     const setWeatherState = (weatherDetails) => {
 
-        const lat = weatherDetails.coord.lat.toFixed(2) + "° " + (weatherDetails.coord.lat >= 0 ? "N" : "S");
-        const lon = weatherDetails.coord.lon.toFixed(2) + "° " + (weatherDetails.coord.lon >= 0 ? "E" : "W");
+        const lat = weatherDetails.coord?.lat.toFixed(2) + "° " + (weatherDetails.coord?.lat >= 0 ? "N" : "S");
+        const lon = weatherDetails.coord?.lon.toFixed(2) + "° " + (weatherDetails.coord?.lon >= 0 ? "E" : "W");
 
         const data = {
             location: `${weatherDetails.name} (${lat}, ${lon})`,
@@ -67,9 +67,9 @@ const Home = () => {
             seaLevelPressure: weatherDetails.main.sea_level,
             groundLevelPressure: weatherDetails.main.grnd_level,
 
-            windSpeed: `${weatherDetails.wind.speed.toFixed(1)} m/s`,
-            windGusts: `${weatherDetails.wind.gust.toFixed(1)} m/s`,
-            windDirection: weatherDetails.wind.deg,
+            windSpeed: `${weatherDetails.wind?.speed.toFixed(1)} m/s`,
+            windGusts: `${weatherDetails.wind?.gust.toFixed(1)} m/s`,
+            windDirection: weatherDetails.wind?.deg,
 
             sunrise: weatherDetails.sys.sunrise,
             sunset: weatherDetails.sys.sunset,
@@ -139,7 +139,7 @@ const Home = () => {
                 setPopup({ show: true, message: 'Session Ended. Please Login To Continue', image: 'images/SessionEnded.svg', actions: [] });
             }
         } catch (error) {
-            console.error('Error Fetching Weather', error);
+            console.error('Error Getting Weather', error);
             setWeatherData({});
         } finally {
             setLocation('');
