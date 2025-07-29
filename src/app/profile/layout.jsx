@@ -8,7 +8,7 @@ import { currentTime, setDynamicBackground } from '@/utils/Functions'
 const layout = ({ children }) => {
 
     return (
-        <Backgrounds centerY videoUrl={setDynamicBackground(currentTime())}>
+        <Backgrounds centerY videoUrl={setDynamicBackground(currentTime())} speed={0.7}>
             <div className='w-full h-full'>
                 <Header />
                 <div className="profileSection my-8 mx-5 sm:mx-10">

@@ -16,7 +16,7 @@ const Profile = ({ paramsValue }) => {
 
     useEffect(() => {
         if (paramsValue !== name) router.replace('/');
-    }, [paramsValue, name]);
+    }, [paramsValue]);
 
     return (
         <div className=" PROFILE_GRID

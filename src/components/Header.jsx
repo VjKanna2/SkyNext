@@ -63,10 +63,7 @@ const Header = () => {
         if (url === 'logout') {
             try {
                 setUserClicked(true);
-                const result = await dispatch(logOut()).unwrap();
-                if (result?.Message === 'Logged Out Successfully') {
-                    route.push('/');
-                }
+                await dispatch(logOut()).unwrap();
             } catch (err) {
                 console.error("Logout failed", err);
             }
@@ -133,7 +130,10 @@ const Header = () => {
             {isLoading && <Loader />}
             <PopUp
                 show={popup.show}
-                onClose={() => setPopup({ show: false, message: '', image: '' })}
+                onClose={() => {
+                    setPopup({ show: false, message: '', image: '' });
+                    route.push('/');
+                }}
                 message={popup.message}
                 image={popup.image}
             />
