@@ -24,6 +24,7 @@ export function getUserLocation() {
 
 // CamelCase
 export function camelCase(value) {
+    if (typeof value !== 'string') return '';
     return value
         .split(' ')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -50,19 +51,28 @@ export function currentTime() {
 export function setDynamicBackground(weather) {
     const videoSrc = {
         cloud: CLOUDS,
+
         clear: CLEAR_SKY,
+        noon: CLEAR_SKY,
+
+        rain: RAINY,
         drizzle: DRIZZLE,
+
         dust: DUST,
-        mist: DUST,
+
+        mist: FOG,
         fog: FOG,
         smoke: FOG,
         smog: FOG,
-        rain: RAINY,
+        haze: FOG,
+
         snow: SNOW,
+
         sunny: SUNNY,
-        thunder: THUNDER,
         morning: SUNNY,
-        noon: CLEAR_SKY,
+
+        thunder: THUNDER,
+
         evening: EVENING,
         night: NIGHT,
     }

@@ -5,7 +5,7 @@ import { LOCATION_SEARCH } from '@/utils/Urls';
 import { PostApi, GetApi } from '@/lib/ApiCall';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, loggedUserHome, loggedUserId } from '@/app/slices/User';
-import { getUserLocation, setDynamicBackground } from '@/utils/Functions';
+import { camelCase, getUserLocation, setDynamicBackground } from '@/utils/Functions';
 import Backgrounds from '@/components/Backgrounds';
 import WeatherReport from './WeatherReport';
 import PopUp from '@/components/PopUp';
@@ -48,8 +48,8 @@ const Home = () => {
 
     const setWeatherState = (weatherDetails) => {
 
-        const lat = weatherDetails.coord.lat.toFixed(2) + "° " + (weatherDetails.coord.lat >= 0 ? "N" : "S");
-        const lon = weatherDetails.coord.lon.toFixed(2) + "° " + (weatherDetails.coord.lon >= 0 ? "E" : "W");
+        const lat = weatherDetails.coord?.lat.toFixed(2) + "° " + (weatherDetails.coord?.lat >= 0 ? "N" : "S");
+        const lon = weatherDetails.coord?.lon.toFixed(2) + "° " + (weatherDetails.coord?.lon >= 0 ? "E" : "W");
 
         const data = {
             location: `${weatherDetails.name} (${lat}, ${lon})`,
@@ -67,9 +67,11 @@ const Home = () => {
             seaLevelPressure: weatherDetails.main.sea_level,
             groundLevelPressure: weatherDetails.main.grnd_level,
 
-            windSpeed: `${weatherDetails.wind.speed.toFixed(1)} m/s`,
-            windGusts: `${weatherDetails.wind.gust.toFixed(1)} m/s`,
-            windDirection: weatherDetails.wind.deg,
+            windSpeed: `${weatherDetails.wind?.speed.toFixed(1)} m/s`,
+            windGusts: weatherDetails.wind?.gust?.toFixed(1) ?
+                `${weatherDetails.wind.gust.toFixed(1)} m/s`
+                : 'N/A',
+            windDirection: weatherDetails.wind?.deg,
 
             sunrise: weatherDetails.sys.sunrise,
             sunset: weatherDetails.sys.sunset,
@@ -107,7 +109,7 @@ const Home = () => {
             if (location.latitude !== '' && location.longitude !== '') {
                 setIsLoading(true);
                 const response = await PostApi('Weather', location)
-                const data = await response.data;
+                const data = response.data;
                 if (data !== null && data.Status === 'Success') {
                     const weather = (data.Data.weather[0]?.main).toLowerCase();
                     setSrcVideo(setDynamicBackground(weather));
@@ -131,13 +133,13 @@ const Home = () => {
                         });
                     }
                 } else if (data.Status === 'Not Found') {
-                    setPopup({ show: true, message: data.Message, image: 'images/Alert.svg', actions: [] });
+                    setPopup({ show: true, message: `${camelCase(location)} - ${camelCase(data.Message)}`, image: 'images/Alert.svg', actions: [] });
                 }
             } else if (response.status === 401) {
                 setPopup({ show: true, message: 'Session Ended. Please Login To Continue', image: 'images/SessionEnded.svg', actions: [] });
             }
         } catch (error) {
-            console.error('Error Fetching Weather', error);
+            console.error('Error Getting Weather', error);
             setWeatherData({});
         } finally {
             setLocation('');
@@ -154,7 +156,7 @@ const Home = () => {
         try {
             setIsLoading(true);
             const response = await GetApi(LOCATION_SEARCH + (location ? location : place));
-            const data = await response.data;
+            const data = response.data;
             if (data !== null && data?.Status === 'Success') {
                 const weatherBackground = (data?.Data.weather[0]?.main).toLowerCase();
                 setSrcVideo(setDynamicBackground(weatherBackground));
@@ -162,7 +164,7 @@ const Home = () => {
             } else if (response.status === 401) {
                 setPopup({ show: true, message: 'Please Login To Continue', image: 'images/LoginToContinue.svg', actions: [] });
             } else if (data.Status === 'Not Found') {
-                setPopup({ show: true, message: data.Message, image: 'images/Alert.svg', actions: [] });
+                setPopup({ show: true, message: `${camelCase(location)} - ${camelCase(data.Message)}`, image: 'images/Alert.svg', actions: [] });
             }
         } catch (error) {
             console.error('Error Fetching Weather', error);

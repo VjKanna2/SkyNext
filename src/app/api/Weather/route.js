@@ -17,18 +17,13 @@ export const GET = async (request) => {
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${KEY}`
 
-    const response = await axios.get(url);
-    const result = await response.data
-
-    if (result !== null || result !== '') {
-        if(result.cod === '404') {
-            return NextResponse.json({ 'Status': 'Not Found', 'Message': result.message }, { status: 200 });
-        }
+    try {
+        const response = await axios.get(url);
+        const result = await response.data
         return NextResponse.json({ 'Status': 'Success', 'Data': result }, { status: 200 });
-    } else {
-        return NextResponse.json({ 'Status': 'Fail', 'Data': result });
+    } catch (error) {
+        return NextResponse.json({ 'Status': 'Not Found', 'Message': error.response.data?.message }, { status: 200 });
     }
-
 }
 
 export const POST = async (request) => {
@@ -41,15 +36,11 @@ export const POST = async (request) => {
 
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${KEY}`
 
-    const weather = await axios.get(url)
-    const result = await weather.data
-
-    if (result !== null || result !== '') {
-        if(result.cod === '404') {
-            return NextResponse.json({ 'Status': 'Not Found', 'Message': result.message }, { status: 200 });
-        }
+    try {
+        const weather = await axios.get(url)
+        const result = await weather.data
         return NextResponse.json({ 'Status': 'Success', 'Data': result }, { status: 200 });
-    } else {
-        return NextResponse.json({ 'Status': 'Fail', 'Data': result });
+    } catch (error) {
+        return NextResponse.json({ 'Status': 'Not Found', 'Message': error.response.data?.message }, { status: 200 });
     }
 }
