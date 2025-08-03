@@ -132,7 +132,7 @@ const Header = () => {
                 show={popup.show}
                 onClose={() => {
                     setPopup({ show: false, message: '', image: '' });
-                    route.push('/');
+                    window.location.reload();
                 }}
                 message={popup.message}
                 image={popup.image}
